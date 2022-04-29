@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="utf-8">
+     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+     <title>ZenBlog Bootstrap Template - Index</title>
+     <meta content="" name="description">
+     <meta content="" name="keywords">
+
+     <!-- Favicons -->
+     <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAACxSagAAAAAALJJqAC1UK0AkDqBAPn5+QCiQZYAizZ8AK5IowCMNnwAtEurALlgsgC2Wa0AkzyEAIMxcgCaP4wArEahALZNrgCwTaYAsU2mAJZNhgC1UK4AhzN1AK1LpACSPYIAjTl9AKpKnwCJOHgArEaiAKZGmgC9YrYArUmiALdQrwCoRZ0AhjN2AIczdgCSOoMAjzZ+ALVLrQCCMnEAtV2sAI05fgC8YLQApkObAI48fgCENHQAnD+OAP7+/gCdUJAAqEieAI06fACzT6sAkj2EALRPqwCuS6YAgzJyAIs1egChQ5QAs0qpAJE4ggC2Ua4AlT+HAJg7igCzTakAhjd1AIc3dQCqRZ8AqleeAJM6hQCUOoUAsEinALBapgC0T6wAtU+sAIMycwCbPY0AlD2FAKFDlQCQPIAAt1GvAKhGnQC5X7EAo1SXAK9JpQCYPosAhzd2AI83fgCIN3YAtkytAIk2eQCLOXkAsU6oALdRsAC4UbAAqUaeAJM7hACwSaYAiDd3AJo+jAC2TK4AlEyGAJlBjACJNnoAvWG1AIYydQCLOXoA////ALJOqQC1SqwAuFGxAI04fQCfP5IAo0aXAI07fQD9/f0AokGVAJ1AkACzTqoAmE6KAPv7+wCcQ5AApEOYAIMxcQCNO34AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEBAQEBAQEBAQEBAQEBZHYwUkNHKFFnHioLAQEBJ0poODs+byscAiZjWDoBAS03ehYlRUtzIRAAbBFYAQFmIg4jai9ycmoICEYKEQEBBAcjI2p4S0t4L0JCYAoBAVQkCQlqFEtLVmoGBl5TAQE5LkR4anh4eHgvYmJzUAEBMXl0eGp3BQVqG25fD00BATYfHR1qHRlZG2osKUxlAQF1Pxd4ah0NcRtqGxt7NAEBFSAzM2pqLy9qGxtBGzIBAUhtXAwMGBgYGBhaVUFhAQFbIG1dSRMacHg9TmlXQAEBAWsDTzw1EhpweD1OaQEBAQEBAQEBAQEBAQEBAQEBAf//AADAAwAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAwAMAAP//AAA="
+          rel="icon" type="image/x-icon" />
+     <link href="{% static 'assets/img/favicon.png'%}" rel="icon">
+     <link href="{% static 'assets/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+
+     <!-- Google Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+          rel="stylesheet">
+
+     <!-- Vendor CSS Files -->
+     <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+     <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+     <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+     <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+     <!-- Template Main CSS Files -->
+     <link href="{% static 'assets/css/variables.css' %}" rel="stylesheet">
+     <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+     <!-- =======================================================
+  * Template Name: ZenBlog - v1.0.0
+  * Template URL: https://bootstrapmade.com/zenblog-bootstrap-blog-template/
+  * Author: BootstrapMade.com
+  * License: https:///bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+    <!-- navbar -->
+    {% include 'includes/navbar.html' %}
+
+
+
+     {% block content %}
+
+
+     {% endblock content %}
+     {% include 'includes/footer.html' %}
