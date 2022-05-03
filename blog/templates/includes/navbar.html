@@ -4,9 +4,10 @@
  <header id="header" class="header d-flex align-items-center fixed-top">
       <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-           <a href="index.html" class="logo d-flex align-items-center">
+           <a href="{% url 'home' %}" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
+                
                 <h1>ZenBlog</h1>
            </a>
 
@@ -40,29 +41,29 @@
 
                 </ul> {% endcomment %}
                 <ul>
-                     <li><a href="index.html">Blog</a></li>
+                     <li><a href="{%url 'all_post'%}">Blog</a></li>
 
 
-                     {% for i in catg %}
+                     {% for i in menu_links %}
                      {% if not i.children.all %}
                      <li>
-                          <a href="#">{{i.category_name}}</a>
+                          <a href="{{i.get_url}}">{{i.category_name}}</a>
                      </li>
                      {% else %}
                      <li class="dropdown">
-                          <a href="#"> {{i.category_name}}<i class="bi bi-chevron-down dropdown-indicator"></i> </a>
+                          <a href="{{i.get_url}}"> {{i.category_name}}<i class="bi bi-chevron-down dropdown-indicator"></i> </a>
                           <ul>
                                {% for obj in i.children.all %}
                                {% if not obj.children.all %}
                                <li class="dropdown">
-                                    <a href="#">{{obj.category_name}}</a>
+                                    <a href="{{obj.get_url}}">{{obj.category_name}}</a>
                                </li>
                                {% else %}
                                <li class="dropdown" >
-                                    <a href="#">{{obj.category_name}}<i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                                    <a href="{{obj.get_url}}">{{obj.category_name}}<i class="bi bi-chevron-down dropdown-indicator"></i></a>
                                     <ul>
                                          {% for subobj in obj.children.all %}
-                                         <li><a href="#">{{subobj.category_name}}</a></li>
+                                         <li><a href="{{subobj.get_url}}">{{subobj.category_name}}</a></li>
                                          {% endfor %}
                                     </ul>
                                </li>
@@ -75,8 +76,11 @@
                 </ul>
 
            </nav><!-- .navbar -->
+          
+
 
            <div class="position-relative">
+                <a href="{% url 'add_post' %}">Add Post</a>
                 <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
                 <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
                 <a href="#" class="mx-2"><span class="bi-instagram"></span></a>

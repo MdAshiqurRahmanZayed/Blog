@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br><br>
+<div class="form-group container ">
+     <h1>New post</h1>
+          <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{form.media}}
+          {{form.as_p}}
+          <button class="btn btn-secondary">Post</button>
+     </form>
+</div>
+<br><br>
+<script>
+     var name = '{{user.id}}';
+     document.getElementById('elder').value = name;
+</script>
+{% endblock content %}
+
+
+
