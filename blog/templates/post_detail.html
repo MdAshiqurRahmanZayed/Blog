@@ -17,6 +17,12 @@
                                         class="mx-1">&bullet;</span>
                                    <span>{{single_post.created_on | date:"F d Y"}}</span></div>
                               <a href=""><h1 class="mb-5">{{single_post.title}}</h1></a>
+                              
+                              {% if user.is_authenticated %}
+
+                              
+                              {% if user.id == single_post.author.id %}
+                                   
                               <a href="{% url 'update_post' single_post.slug %}">
 
                                    <button type="button" class="btn btn-info">Edit Post</button>
@@ -25,6 +31,11 @@
 
                                    <button type="button" class="btn btn-danger">Delete Post</button>
                               </a>
+                              {% endif %}
+                              
+                                   
+                              {% endif %}
+                                   
                               {% comment %} <p><span class="firstcharacter">L</span>orem ipsum dolor sit, amet
                                    consectetur adipisicing elit. Ratione officia sed, suscipit distinctio, numquam omnis
                                    quo fuga ipsam quis inventore voluptatum recusandae culpa, unde doloribus saepe

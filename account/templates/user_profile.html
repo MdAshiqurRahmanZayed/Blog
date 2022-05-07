@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+
+     <h1>User Profile</h1>
+     <br>
+     <div class="card mb-3">
+          <div class="row g-0">
+
+               <div class="col-md-2">
+
+                    {% if user.profile.profile_picture %}
+
+                    <img src="{{user.profile.profile_picture.url}}" class="img-fluid rounded-start" alt="...">
+                    {% else %}
+                    <img src="{% static 'assets/img/default-profile-icon-3.jpg' %}" class="img-fluid rounded-start"
+                         alt="...">
+
+                    {% endif %}
+
+               </div>
+               <div class="col-md-10">
+                    <div class="card-body">
+                         <h5 class="card-title">{{user.first_name}}
+                              {{user.last_name}}</h5>
+                         <p class="small text-muted ">
+
+                              {% if user.profile.website %}
+
+                              <a href="{{user.profile.website}}">
+                                   Website |
+                              </a>
+                              {% endif %}
+                              {% if user.profile.facebook_url %}
+                              <a href="{{user.profile.facebook_url}}">
+                                   Facebook |
+                              </a>
+                              {% endif %}
+                              {% if user.profile.twitter_url %}
+                              <a href="{{user.profile.twitter_url}}">
+                                   Twitter |
+                              </a>
+                              {% endif %}
+                              {% if user.profile.istagram_url %}
+                              <a href="{{user.profile.istagram_url}}">
+                                   Instagram |
+                              </a>
+                              {% endif %}
+                         </p>
+                         <p class="card-text">{{user.profile.bio}}</p>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+
+{% endblock  %}

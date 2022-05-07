@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Edit Settings{% endblock  %}
+{% block content %}
+<h1>Edit Settings</h1>
+<br>
+<br>
+<div class="form-group container">
+
+     <form action="" method="POST">
+          {% csrf_token %}
+           Username: 
+          {{form.username}}
+           First name: 
+           {{form.first_name}}
+          {% comment %} {{form.as_p}} {% endcomment %}
+           Last name:
+           {{form.last_name}}
+           Email:
+           {{form.email}}
+           Change password:
+           <a style ="color:blue"href="{% url 'change_password' %}">Link</a>
+           
+           <br><br>
+          <button class="btn btn-secondary">Update Profile</button>
+     </form>
+     <br>
+     <br>
+     <br>
+</div>
+
+{% endblock  %}

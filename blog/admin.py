@@ -5,6 +5,12 @@ from .models import Profile, Post, Tag
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     model = Profile
+    
+    list_display = (
+        'user',
+        'birthday',
+        'website',
+    )
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
@@ -23,6 +29,7 @@ class PostAdmin(admin.ModelAdmin):
         # "slug",
         "publish_date",
         "published",
+        "slider",
     )
     list_filter = (
         "published",
@@ -34,6 +41,7 @@ class PostAdmin(admin.ModelAdmin):
         # "slug",
         "publish_date",
         "published",
+        "slider",
     )
     search_fields = (
         "title",

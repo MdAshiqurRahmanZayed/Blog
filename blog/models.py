@@ -19,15 +19,19 @@ STATUS = (
 )
 
 class Profile(models.Model):
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.PROTECT,
-    )
+    user =  models.OneToOneField(User,null=True,on_delete=models.CASCADE)
+    bio =RichTextField(max_length=500)
+    profile_picture = models.ImageField(null=True, blank=True, upload_to="images/profile", height_field=None, width_field=None, max_length=None)
+    birthday =  models.DateField(blank=True, null=True)
     website = models.URLField(blank=True)
-    bio = models.CharField(max_length=240, blank=True)
+    facebook_url = models.CharField(max_length=255,null=True,blank=True)
+    twitter_url = models.CharField(max_length=255,null=True,blank=True)
+    istagram_url = models.CharField(max_length=255,null=True,blank=True)
 
     def __str__(self):
         return self.user.get_username()
+    def get_absolute_url(self): # new
+        return reverse('home')
 
 
 class Tag(models.Model):
@@ -44,8 +48,8 @@ class Post(models.Model):
     heder_image =  models.ImageField(null=False,blank=True,upload_to="images/")
     heder_image_url =  models.CharField(null=True,blank=True,max_length=200)
     heder_image_Under_line =  models.TextField(null=True,default="image")
-    author = models.ForeignKey(Profile, on_delete=models.PROTECT)
-   #  author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # author = models.ForeignKey(Profile, on_delete=models.PROTECT)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     updated_on = models.DateTimeField(auto_now= True)
     created_on = models.DateTimeField(auto_now_add=True)
     body   = RichTextField(max_length=100000)
@@ -57,6 +61,7 @@ class Post(models.Model):
     publish_date = models.DateTimeField(blank=True, null=True)
     published = models.BooleanField(default=False)
     tags = models.ManyToManyField(Tag, blank=True)
+    slider = models.BooleanField(default=False)
     
     # def __str__(self):
     #     return self.title + " | "+str(self.author)
@@ -70,8 +75,8 @@ class Post(models.Model):
         ordering = ['-created_on']
         
         
-    # def get_absolute_url(self): # new
-    #     return reverse('post_detail', args=[self.category.slug,self.slug])
+    def get_absolute_url(self): # new
+        return reverse('post_detail', args=[self.category.slug,self.slug])
     
     
     # def save(self , *args, **kwargs): 

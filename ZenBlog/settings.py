@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'froala_editor',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -115,6 +116,11 @@ TIME_ZONE = 'Asia/Dhaka'
 USE_I18N = True
 
 USE_TZ = True
+
+#login log out
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 
 # Static files (CSS, JavaScript, Images)

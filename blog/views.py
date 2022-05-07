@@ -1,5 +1,5 @@
 from tkinter import EXCEPTION
-from unicodedata import category
+# from unicodedata import category
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 # from django.http import HttpResponse
@@ -11,11 +11,17 @@ from .forms import *
 
 
 def home(request):
-     category = Category.objects.filter(parent=None)
-     queryset = Post.objects.filter(published=True).order_by('-created_on')
+     category = Category.objects.all().filter(parent=None)
+   #   post_by_category = Post.objects.filter(category__category_name="Computer",published=True).order_by('-created_on')
+   #   post_by_computer = Post.objects.filter(category=Category.objects.get(category_name="Computer"),published=True).order_by('-created_on')
+     post_by_category = Post.objects.filter(published=True).order_by('-category')
+     slider = Post.objects.filter(slider=True).order_by('-created_on')
+
+
      context = {
-          'catg':category,
-          'queryset':queryset,
+          'category':category,
+          'post_by_category':post_by_category,
+          'slider':slider,
      }
      return render(request,'home.html',context)
 

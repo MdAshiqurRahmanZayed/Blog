@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
+{% block title %}Add Post{% endblock title %}
 {% block content %}
 <br><br><br><br>
+
+{% if user.is_authenticated %}
+     
 <div class="form-group container ">
      <h1>New post</h1>
           <form action="" method="POST" enctype="multipart/form-data">
@@ -15,6 +19,14 @@
      var name = '{{user.id}}';
      document.getElementById('elder').value = name;
 </script>
+{% else %}
+<div class="container">
+
+     <h3>Sorry!!! You are not allowed. <br>
+     <a style="color:blue" href="{% url 'register' %}">Register</a> or <a style="color:blue" href="{% url 'login' %}">Sign in </a>to add post</h3>
+</div>
+{% endif %}
+     
 {% endblock content %}
 
 
