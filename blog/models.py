@@ -8,6 +8,7 @@ from django.urls import reverse
 # from datetime import date,datetime
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingFormField
+from ckeditor_uploader.fields import RichTextUploadingField
 from froala_editor.fields import FroalaField
 from category.models import *
 from django.conf import settings
@@ -52,7 +53,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     updated_on = models.DateTimeField(auto_now= True)
     created_on = models.DateTimeField(auto_now_add=True)
-    body   = RichTextField(max_length=100000)
+    body   = RichTextUploadingField(null=True,blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
     meta_description = models.TextField(max_length=300, blank=True,default='click link above to read the blog post')
     category = models.ForeignKey(Category,on_delete= models.CASCADE)

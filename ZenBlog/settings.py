@@ -183,7 +183,7 @@ CKEDITOR_CONFIGS = {
                 'Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
             {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
-            {'name': 'about', 'items': ['About']},
+            # {'name': 'about', 'items': ['About']},
             '/',  # put this to force next toolbar on new line
             {'name': 'yourcustomtools', 'items': [
                 # put the name of your editor.ui.addButton here
@@ -191,11 +191,17 @@ CKEDITOR_CONFIGS = {
                 'Maximize',
 
             ]},
+            {
+            'name': 'youtube',
+            'items': ['Youtube',]
+        },
+           
         ],
         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
         'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
-        'height': 291,
-        'width': '120%',
+        'height': 400,
+        'width': 1300,
+        'scayat_slang': ['en_US, en_GB, pt_BR, da_DK, nl_NL, en_CA, fi_FI, fr_FR, fr_CA, de_DE, el_GR, it_IT, nb_NO, pt_PT, es_ES, uk_UK'],
         'filebrowserWindowHeight': 725,
         'filebrowserWindowWidth': 940,
         'toolbarCanCollapse': True,
@@ -216,6 +222,9 @@ CKEDITOR_CONFIGS = {
             'dialog',
             'dialogui',
             'elementspath',
+            'youtube',
+             'embed',
+             'scayt',
         ]),
         
     }

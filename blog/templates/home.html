@@ -173,6 +173,7 @@
     </div>
   </section> <!-- End Post Grid Section --> {% endcomment %}
 
+
   {% for category in category  %}
 
   <section class="category-section">
@@ -189,10 +190,9 @@
         <div class="col-md-9">
 
           {% for post in post_by_category %}
-
-
+          
+          
           {% if post.category.category_name  == category.category_name %}
-
 
 
 
@@ -215,9 +215,6 @@
               </div>
             </div>
           </div>
-
-
-
           {% endif %}
 
           {% endfor %}

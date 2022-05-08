@@ -1,4 +1,5 @@
 from tkinter import EXCEPTION
+from unicodedata import category
 # from unicodedata import category
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
@@ -8,6 +9,7 @@ from .models import *
 from category.models import *
 from django.views.generic import *
 from .forms import *
+from django.core.paginator import Paginator
 
 
 def home(request):
@@ -15,6 +17,8 @@ def home(request):
    #   post_by_category = Post.objects.filter(category__category_name="Computer",published=True).order_by('-created_on')
    #   post_by_computer = Post.objects.filter(category=Category.objects.get(category_name="Computer"),published=True).order_by('-created_on')
      post_by_category = Post.objects.filter(published=True).order_by('-category')
+
+
      slider = Post.objects.filter(slider=True).order_by('-created_on')
 
 
@@ -22,6 +26,7 @@ def home(request):
           'category':category,
           'post_by_category':post_by_category,
           'slider':slider,
+         #  'page_obj':page_obj,
      }
      return render(request,'home.html',context)
 
@@ -34,8 +39,24 @@ def home(request):
     
 def PostListView(request):
      object_list = Post.objects.all().filter(published=True).order_by('-created_on')
+     category = Category.objects.all().filter(parent=None)
+     p = Paginator(object_list, 5)  # creating a paginator object
+    # getting the desired page number from url
+     page_number = request.GET.get('page')
+     try:
+        page_obj = p.get_page(page_number)  # returns the desired page object
+     except PageNotAnInteger:
+        # if page_number is not an integer then assign the first page
+        page_obj = p.page(1)
+     except EmptyPage:
+        # if page is empty then return last page
+        page_obj = p.page(p.num_pages)     
+     
+     
      context={
-          "post":object_list
+          "post":object_list,
+          'page_obj':page_obj,
+          'category':category,
      }
      return render(request,'all_post.html',context)
 
@@ -43,19 +64,34 @@ def PostListView(request):
 
 def AllPost_by_category(request,category_slug=None):
      categories = None
-     post   = None
+     page_obj   = None
      
      if category_slug !=None :
         categories     = get_object_or_404(Category, slug = category_slug)
-        post           = Post.objects.filter(category=categories,published=True)
-        post_count     = post.count()
+        page_obj           = Post.objects.filter(category=categories,published=True)
+        post_count     = page_obj.count()
      else:
-        post           = Post.objects.all(published=True)
-        post_count     = post.count()
+        page_obj           = Post.objects.all(published=True)
+        post_count     = page_obj.count()
+        
+     #paginator
+     category = Category.objects.all().filter(parent=None)
+     p = Paginator(page_obj, 5)  # creating a paginator object
+    # getting the desired page number from url
+     page_number = request.GET.get('page')
+     try:
+        page_obj = p.get_page(page_number)  # returns the desired page object
+     except PageNotAnInteger:
+        # if page_number is not an integer then assign the first page
+        page_obj = p.page(1)
+     except EmptyPage:
+        # if page is empty then return last page
+        page_obj = p.page(p.num_pages)     
+     
 
      
      context  ={
-        'post':post,
+        'page_obj':page_obj,
         'post_count':post_count,
      }
     

@@ -15,6 +15,7 @@
            <nav id="navbar" class="navbar">
                 <div class="position-relative">
 
+
                      {% comment %} <a href="{% url 'add_post' %}">Add Post</a>
 
 
@@ -31,6 +32,7 @@
 
 
                      <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+
                      <i class="bi bi-list mobile-nav-toggle"></i>
 
                      <!-- ======= Search Form ======= -->
@@ -106,68 +108,117 @@
                      </li>
                      {% endif %}
                      {% endfor %}
-                     
-                     
-                          
-                     
+
+
+
+
                 </ul>
-                
+                <a href="{% url 'add_post' %}">Add Post</a>
+
 
 
            </nav><!-- .navbar -->
+           <nav class="navbar">
+                <ul>
+                     {% if user.is_authenticated %}
+                     <li class="dropdown">
 
-          
-           {% if user.is_authenticated %}
-                    <ul class="navbar-nav ml-auto">
-                         <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle nav-item" href="#"  role="button"
-                                   data-bs-toggle="dropdown">
-                                   {% comment %} {{user.first_name}} {{user.last_name}} {% endcomment %}
-                                   {% comment %} {{user.profile.profile_pic}} {% endcomment %}
-                                   {% if user.profile.profile_picture %}
+                          <a href="">
+                               {% if user.profile.profile_picture %}
 
-                                   <img src="{{user.profile.profile_picture.url}}"
-                                        style="width:50px;height:50px;border-radius:50%" alt="..."> 
-                                        {% else %}
-                                   <img src="{% static 'assets/img/default-profile-icon-3.jpg' %}"
-                                       style="width:50px;height:50px;border-radius:50%"  alt="...">
+                               <img src="{{user.profile.profile_picture.url}}"
+                                    style="width:50px;height:50px;border-radius:50%" alt="...">
+                               {% else %}
+                               <img src="{% static 'assets/img/default-profile-icon-3.jpg' %}"
+                                    style="width:50px;height:50px;border-radius:50%" alt="...">
 
-                                   {% endif %}
-                                   </a>
-                                   
-                              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                   <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Settings</a></li>
-                                   <li><a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a></li>
-
-                                   {% if user.profile.id %}
-
-                                   <li><a class="dropdown-item"
-                                             href="{% url 'update_profile_page' user.profile.id %}">Edit Profile
-                                             Page</a>
-                                   </li>
-                                   <li><a class="dropdown-item"
-                                             href="{% url 'show_profile_page' user.profile.id %}">Show Profile
-                                             Page</a>
-                                   </li>
-                                   
-                                   {% else %}
-
-                                   <li><a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile
-                                             Page</a>
-                                   </li>
-
-                                   {% endif %}
-
-                                   <a class="dropdown-item" href="{% url 'logout' %}">logout</a>
-
-                              </ul>
-                         </li>
+                               {% endif %}
+                          </a>
+                          </a>
+                          <ul>
+                               <li><a href="{% url 'edit_profile' %}">Edit Settings</a></li>
+                               <li><a href="{% url 'change_password' %}">Change Password</a></li>
 
 
-                    </ul>
-                    {% else %}
-                    <a href="{% url 'login' %}">Login</a>
-                    {% endif %}
+                               {% if user.profile.id %}
+
+                               <li><a class="dropdown-item" href="{% url 'update_profile_page' user.profile.id %}">Edit
+                                         Profile
+                                         Page</a>
+                               </li>
+                               <li><a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">Show
+                                         Profile
+                                         Page</a>
+                               </li>
+
+                               {% else %}
+
+                               <li><a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile
+                                         Page</a>
+                               </li>
+
+                               {% endif %}
+
+                               <a class="dropdown-item" href="{% url 'logout' %}">logout</a>
+                          </ul>
+                     </li>
+                     {% else %}
+           <a href="{% url 'login' %}">Login</a>
+                     {% endif %}
+                </ul>
+           </nav>
+
+
+           {% comment %} {% if user.is_authenticated %}
+           <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                     <a class="nav-link nav-item" href="#" data-bs-toggle="dropdown">
+                          {{user.first_name}} {{user.last_name}}
+                          {{user.profile.profile_pic}}
+                          {% if user.profile.profile_picture %}
+
+                          <img src="{{user.profile.profile_picture.url}}"
+                               style="width:50px;height:50px;border-radius:50%" alt="...">
+                          {% else %}
+                          <img src="{% static 'assets/img/default-profile-icon-3.jpg' %}"
+                               style="width:50px;height:50px;border-radius:50%" alt="...">
+
+                          {% endif %}
+                     </a>
+
+
+                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Settings</a></li>
+                          <li><a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a></li>
+
+                          {% if user.profile.id %}
+
+                          <li><a class="dropdown-item" href="{% url 'update_profile_page' user.profile.id %}">Edit
+                                    Profile
+                                    Page</a>
+                          </li>
+                          <li><a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">Show Profile
+                                    Page</a>
+                          </li>
+
+                          {% else %}
+
+                          <li><a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile
+                                    Page</a>
+                          </li>
+
+                          {% endif %}
+
+                          <a class="dropdown-item" href="{% url 'logout' %}">logout</a>
+
+                     </ul>
+                </li>
+
+
+           </ul>
+           {% else %}
+           <a href="{% url 'login' %}">Login</a>
+           {% endif %} {% endcomment %}
 
 
 
