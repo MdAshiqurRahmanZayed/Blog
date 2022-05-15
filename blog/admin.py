@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Post, Tag
-
+from .models import *
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
@@ -57,6 +56,33 @@ class PostAdmin(admin.ModelAdmin):
     }
     date_hierarchy = "publish_date"
     save_on_top = True
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'body', 'post', 'created_on', 'active')
+    list_filter = ('active', 'created_on')
+    search_fields = ('name', 'email', 'body')
+    actions = ['approve_comments']
+    list_editable = (
+
+        "active",
+    )
+
+    def approve_comments(self, request, queryset):
+        queryset.update(active=True)
+
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    model = Contact
+    
+    list_display = (
+        'name',
+        'email',
+        'subject',      
+    )
+
 
 
 # class PostAdmin(admin.ModelAdmin):

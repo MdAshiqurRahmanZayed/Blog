@@ -45,3 +45,33 @@ class EditForm(forms.ModelForm):
                'meta_description': forms.TextInput(attrs={'class':'form-control'}),
               
         }
+
+
+
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'email', 'body')
+        
+        widgets = {
+              'name': forms.TextInput(attrs={'class': 'form-control','placeholder':'Enter your name'}),
+               'email': forms.TextInput( attrs={'class': 'form-control','placeholder':'Enter your email'}),
+               'body': forms.Textarea(attrs={'class':'form-control','placeholder':'Leave a Comment'}),
+
+        }
+        
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ('name', 'email','subject', 'message')
+        
+        widgets = {
+              'name': forms.TextInput(attrs={'class': 'form-control','placeholder':'Your name'}),
+               'email': forms.TextInput( attrs={'class': 'form-control','placeholder':'Your email'}),
+               'subject': forms.TextInput( attrs={'class': 'form-control','placeholder':'Subject'}),
+               'message': forms.Textarea(attrs={'class':'form-control','placeholder':'Message'}),
+
+        }
+        

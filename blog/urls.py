@@ -10,4 +10,6 @@ urlpatterns = [
     path('<slug:category_slug>/<slug:post_slug>',PostDetail,name= 'post_detail'),
     path('article/update/<slug:slug>/', UpdatePostView.as_view(), name='update_post'),
     path('article/delete/<slug:slug>/', DeletePostView.as_view(), name='delete_post'),
+    path('contact/',ContactCreateView.as_view(),name='contact'),
+    path('contact_message_successfully_send/',contact_message_successfully_send,name='contact_message_successfully_send'),
 ]

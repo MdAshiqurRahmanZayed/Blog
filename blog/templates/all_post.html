@@ -10,6 +10,7 @@
 
                     <div class="col-md-9">
                          {% for post in  page_obj %}
+                         
                          <h3 class="category-title"></h3>
 
                          <div class="d-md-flex post-entry-2 half">
@@ -34,11 +35,20 @@
                                    <h3><a href="{{post.get_url}}">{{post.title}}</a></h3>
                                    <p>{{post.meta_description}}</p>
                                    <div class="d-flex align-items-center author">
-                                        <div class="photo" style="box-sizing:border-box"><img
-                                                  src="assets/img/person-2.jpg" alt="" class="img-fluid">
+                                        <div class="photo" style="box-sizing:border-box">
+                                             
+                                             {% if post.author.profile_picture %}
+                                                  
+                                             <img style="width:50px;height:50px;border-radius:50%" src="{{post.author.profile_picture.url}}" alt="" class="img-fluid">
+                                             {% else %}
+                                             <img src="{% static 'assets/img/default-profile-icon-3.jpg' %}"
+                                    style="width:50px;height:50px;border-radius:50%" alt="...">
+                                             {% endif %}
+                                                  
+                                             
                                         </div>
                                         <div class="name">
-                                             <h3 class="m-0 p-0">{{post.author}}</h3>
+                                             <h3 class="m-0 p-0">{{post.author.first_name}} {{post.author.last_name}}</h3>
                                         </div>
                                    </div>
                               </div>
@@ -281,15 +291,7 @@
                               </div>
                          </div>
 
-                         <div class="aside-block">
-                              <h3 class="aside-title">Video</h3>
-                              <div class="video-post">
-                                   <a href="https://www.youtube.com/watch?v=AiFfDjmd0jU" class="glightbox link-video">
-                                        <span class="bi-play-fill"></span>
-                                        <img src="assets/img/post-landscape-5.jpg" alt="" class="img-fluid">
-                                   </a>
-                              </div>
-                         </div><!-- End Video -->
+                        
 
                          <div class="aside-block">
                               <h3 class="aside-title">Categories</h3>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Thank you {% endblock title %}
+
+{% load static %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+     <div class="my-3">
+
+          <div class="sent-message">Your message has been sent. Thank you!</div>
+          <a style="color:blue" href="{% url 'home' %}">Home</a>
+     </div>
+</div>
+{% endblock %}

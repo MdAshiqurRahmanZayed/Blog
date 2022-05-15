@@ -10,10 +10,13 @@ from ckeditor.widgets import CKEditorWidget
 class ProfilePageForm(forms.ModelForm):
      class Meta:
           model = Profile
-          fields = ('bio', 'profile_picture', 'birthday','website',
+          fields = ('bio', 'profile_picture','username','first_name','last_name', 'birthday','website',
                     'facebook_url', 'twitter_url', 'istagram_url')
           widgets={
-          'bio': forms.Textarea(attrs={'class': 'form-control'}),
+          'bio': forms.CharField(widget = CKEditorWidget()),
+          'username': forms.TextInput(attrs={'class': 'form-control'}),
+          'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+          'last_name': forms.TextInput(attrs={'class': 'form-control'}),
           #'profile_pic': forms.TextInput(attrs={'class': 'form-control'}),
           
           'website': forms.TextInput(attrs={'class': 'form-control'}),
@@ -23,13 +26,19 @@ class ProfilePageForm(forms.ModelForm):
           'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),
           'istagram_url': forms.TextInput(attrs={'class': 'form-control'}),
           }
+
+
+
 class UpdateProfilePageForm(forms.ModelForm):
      class Meta:
           model = Profile
-          fields = ('bio', 'profile_picture', 'birthday','website',
+          fields = ('bio', 'profile_picture','username','first_name','last_name', 'birthday','website',
                     'facebook_url', 'twitter_url', 'istagram_url')
           widgets={
           'bio': forms.CharField(widget = CKEditorWidget()),
+          'username': forms.TextInput(attrs={'class': 'form-control'}),
+          'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+          'last_name': forms.TextInput(attrs={'class': 'form-control'}),
           #'profile_pic': forms.TextInput(attrs={'class': 'form-control'}),
           
           'website': forms.TextInput(attrs={'class': 'form-control'}),
@@ -45,12 +54,12 @@ class UpdateProfilePageForm(forms.ModelForm):
 
 class SignUpForm(UserCreationForm):
      email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
-     first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-     last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+     # first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+     # last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
      
      class Meta:
           model = User
-          fields =('username','first_name','last_name','email','password1','password2')
+          fields =('username','email','password1','password2')
           
      def __init__(self, *args, **kwargs) :
          super(SignUpForm,self).__init__(*args, **kwargs)

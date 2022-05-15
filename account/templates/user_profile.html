@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}Profile{% endblock title %}
 {% load static %}
 {% block content %}
 <br>
@@ -52,7 +53,7 @@
                               </a>
                               {% endif %}
                          </p>
-                         <p class="card-text">{{user.profile.bio}}</p>
+                         <p class="card-text">{{user.profile.bio|safe}}</p>
                     </div>
                </div>
           </div>
