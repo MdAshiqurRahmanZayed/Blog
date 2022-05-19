@@ -26,7 +26,10 @@ $ source env/bin/activate
 $ python manage.py runserver          
 ```
 username:admin
+
 password:1234
+
+
 Demo pictures
 ![](/screenshot/1.png)
 ![](/screenshot/2.png)
