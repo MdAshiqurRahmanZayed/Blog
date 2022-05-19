@@ -26,7 +26,7 @@ $ source env/bin/activate
 $ python manage.py runserver          
 ```
 
-Demo picture
+Demo pictures
 ![](/screenshot/1.png)
 ![](/screenshot/2.png)
 ![](/screenshot/3.png)
