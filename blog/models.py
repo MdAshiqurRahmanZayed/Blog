@@ -137,3 +137,25 @@ class Contact(models.Model):
     
     def get_absolute_url(self): # new
         return reverse('home')
+    
+class About(models.Model):
+    about_us_title = models.CharField( max_length=50,null=True,blank=True) 
+    about_us_body = models.TextField( max_length=1000,null=True,blank=True) 
+    about_us_title_image =  models.ImageField(null=False,blank=True,upload_to="images/about")
+    mission_and_vision_title = models.CharField( max_length=50,null=True,blank=True) 
+    mission_and_vision_body = models.TextField( max_length=1000,null=True,blank=True)
+    mission_and_vision_image =  models.ImageField(null=False,blank=True,upload_to="images/about") 
+    our_team_description = models.TextField( max_length=1000,null=True,blank=True)
+
+    
+    
+    def __str__(self):
+        return "About"
+    
+class TeamLeader(models.Model):
+    name_of_team_leader = models.CharField( max_length=50,null=True,blank=True)
+    name_of_team_leader_image =  models.ImageField(null=False,blank=True,upload_to="images/leader") 
+    name_of_team_leader_title = models.CharField( max_length=50,null=True,blank=True)
+    leader_description = models.TextField( max_length=1000,null=True,blank=True)
+    def __str__(self):
+        return self.name_of_team_leader+"       :"+self.name_of_team_leader_title

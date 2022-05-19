@@ -7,20 +7,78 @@
 <main id="main">
 
      <section class="single-post-content">
+
+
+
+
+
+
           <div class="container">
                <div class="row">
                     <div class="col-md-9 post-content">
 
                          <!-- ======= Single Post Content ======= -->
+                         {% comment %} <h2 class="title-page">Post</h2>
+                         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                              <ol class="breadcrumb">
+                                   <li class="breadcrumb-item"><a href="{% url '' %}">Store</a></li>
+                                  
+
+                                   {% if single_post.category.parent %}
+                                   <li class="breadcrumb-item active" aria-current="page"><a
+                                             href="{{single_post.category.parent.get_url}}">{{single_post.category.parent.category_name}}</a>
+                                   </li>
+                                   {% endif %}
+
+                                   <li class="breadcrumb-item active" aria-current="page"><a
+                                             href="{{single_post.category.get_url}}">{{single_post.category.category_name}}</a>
+                                   </li>
+                              </ol>
+                         </nav> {% endcomment %}
+
                          <div class="single-post">
-                              <div class="post-meta"><span class="date"><a
-                                             href="{{single_post.category.get_url}}">{{single_post.category}}</a></span>
+                              <div class="post-meta">
+                                   {% comment %} <span class="date"><a
+                                             href="{{single_post.category.get_url}}">{{single_post.category}}</a>
+                                   </span>
+                                   <span class="mx-1">&bullet;</span> {% endcomment %}
+                                   <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                              <ol class="breadcrumb">
+                                   {% comment %} <li class="breadcrumb-item"><a href="{% url '' %}">Store</a></li>
+                                   {% endcomment %}
+
+                                   {% if single_post.category.parent %}
+                                   <li class="breadcrumb-item active" aria-current="page"><a
+                                             href="{{single_post.category.parent.get_url}}">{{single_post.category.parent.category_name}}</a>
+                                   </li>
+                                   {% endif %}
+
+                                   <li class="breadcrumb-item active" aria-current="page"><a
+                                             href="{{single_post.category.get_url}}">{{single_post.category.category_name}}</a>
+                                   </li>
                                    <span class="mx-1">&bullet;</span>
-                                   <span>{{single_post.created_on | date:"F d Y"}}</span></div>
+                                   <span>{{single_post.created_on | date:"F d Y"}}</span>
+                              </ol>
+                         </nav>
+                                   <span>{{single_post.created_on | date:"F d Y"}}</span>
+                              </div>
                               <a href="">
                                    <h1 class="mb-5">{{single_post.title}}</h1>
                               </a>
-                              {% comment %} <a href="{% url 'show_profile_page' single_post.author.id %}">{{single_post.author.id}}</a> {% endcomment %}
+
+                              <a href="{% url 'author_profile_page' single_post.author.id %}">
+                                   {% if single_post.author.profile_picture %}
+
+                                   <img style="width:50px;height:50px;border-radius:50%"
+                                        src="{{single_post.author.profile_picture.url}}" alt="" class="img-fluid">
+                                   {% else %}
+                                   <img src="{% static 'assets/img/default-profile-icon-3.jpg' %}"
+                                        style="width:50px;height:50px;border-radius:50%" alt="...">
+                                   {% endif %}
+
+                                   {{single_post.author.first_name}} {{single_post.author.last_name}}
+                              </a>
+
 
                               <p> Tags: {{ single_post.tags.all|join:", " }} </p>
 
@@ -161,74 +219,76 @@
                               <div class="col-lg-12">
                                    {% if new_comment %}
                                    <div class="alert alert-success" role="alert">
-                                        Your comment is awaiting moderation you can go <a href="{% url 'home' %}">Home</a>
+                                        Your comment is awaiting moderation you can go <a
+                                             href="{% url 'home' %}">Home</a>
                                    </div>
                                    {% else %}
 
                                    <h5 class="comment-title">Leave a Comment</h5>
                                    <form method="post" style="margin-top: 1.3em;">
-                                   <div class="row">
-                                        <div class="col-lg-6 mb-3">
-                                             <label for="comment-name">Name</label>
-                                              {% csrf_token %}
-                                             {{ comment_form.name }}
-                                             
-                                        </div>
-                                        <div class="col-lg-6 mb-3">
-                                             <label for="comment-email">Email</label>
-                                             {{ comment_form.email }}
-                                             
-                                        </div>
-                                        <div class="col-12 mb-3">
-                                             <label for="comment-message">Message</label>
-                                             {{ comment_form.body }}
+                                        <div class="row">
+                                             <div class="col-lg-6 mb-3">
+                                                  <label for="comment-name">Name</label>
+                                                  {% csrf_token %}
+                                                  {{ comment_form.name }}
 
-                                             
-                                        </div>
-                                        <div class="col-12">
-                                            
-                                        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
-                                        </div>
+                                             </div>
+                                             <div class="col-lg-6 mb-3">
+                                                  <label for="comment-email">Email</label>
+                                                  {{ comment_form.email }}
+
+                                             </div>
+                                             <div class="col-12 mb-3">
+                                                  <label for="comment-message">Message</label>
+                                                  {{ comment_form.body }}
+
+
+                                             </div>
+                                             <div class="col-12">
+
+                                                  <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+                                             </div>
                                    </form>
-                                   </div>
-                                   {% endif %}
                               </div>
-                         </div><!-- End Comments Form -->
+                              {% endif %}
+                         </div>
+                    </div><!-- End Comments Form -->
 
-                    </div>
-                    <div class="col-md-3">
-                         <!-- ======= Sidebar ======= -->
-                         <div class="aside-block">
-                              <h3 class="aside-title">Categories</h3>
-                              <ul class="aside-links list-unstyled">
-                                   {% for category in categories %}
-                                   <li><a href="{{category.get_url}}"><i class="bi bi-chevron-right"></i>{{category.category_name}}</a></li>
-                                   {% endfor %}
-                                  
-                              </ul>
-                         </div><!-- End Categories -->
-                         
-
-
-
-                        
-
-                         {% comment %} <div class="aside-block">
-                              <h3 class="aside-title">Tags</h3>
-                              <ul class="aside-tags list-unstyled">
-                                   <li><a href="category.html">Business</a></li>
-                                   <li><a href="category.html">Culture</a></li>
-                                   <li><a href="category.html">Sport</a></li>
-                                   <li><a href="category.html">Food</a></li>
-                                   <li><a href="category.html">Politics</a></li>
-                                   <li><a href="category.html">Celebrity</a></li>
-                                   <li><a href="category.html">Startups</a></li>
-                                   <li><a href="category.html">Travel</a></li>
-                              </ul>
-                         </div><!-- End Tags --> {% endcomment %}
-
-                    </div>
                </div>
+               <div class="col-md-3">
+                    <!-- ======= Sidebar ======= -->
+                    <div class="aside-block">
+                         <h3 class="aside-title">Categories</h3>
+                         <ul class="aside-links list-unstyled">
+                              {% for category in categories %}
+                              <li><a href="{{category.get_url}}"><i
+                                             class="bi bi-chevron-right"></i>{{category.category_name}}</a></li>
+                              {% endfor %}
+
+                         </ul>
+                    </div><!-- End Categories -->
+
+
+
+
+
+
+                    {% comment %} <div class="aside-block">
+                         <h3 class="aside-title">Tags</h3>
+                         <ul class="aside-tags list-unstyled">
+                              <li><a href="category.html">Business</a></li>
+                              <li><a href="category.html">Culture</a></li>
+                              <li><a href="category.html">Sport</a></li>
+                              <li><a href="category.html">Food</a></li>
+                              <li><a href="category.html">Politics</a></li>
+                              <li><a href="category.html">Celebrity</a></li>
+                              <li><a href="category.html">Startups</a></li>
+                              <li><a href="category.html">Travel</a></li>
+                         </ul>
+                    </div><!-- End Tags --> {% endcomment %}
+
+               </div>
+          </div>
           </div>
      </section>
 </main><!-- End #main -->

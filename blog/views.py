@@ -1,5 +1,6 @@
 from tkinter import EXCEPTION
 from unicodedata import category
+from urllib import request
 # from unicodedata import category
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
@@ -208,3 +209,21 @@ def contact_message_successfully_send(request):
 
 # def ContactCreateView(request):
 #    return render(request,'contact.html')
+
+
+
+class ProfilePageView(DetailView):
+     model = Profile
+     template_name = 'author_profile.html'
+     
+     
+     
+def About_page(request):
+   about = About.objects.all
+   leader = TeamLeader.objects.all
+   context ={
+      'about':about,
+      'leader':leader
+      
+   }
+   return render(request,'about.html',context)

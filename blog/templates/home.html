@@ -52,7 +52,7 @@
 
       <div class="section-header d-flex justify-content-between align-items-center mb-5">
         <h2>{{category.category_name }}</h2>
-        <div><a href="{% url 'post_by_category'  category.category_name %}" class="more">See All
+        <div><a href="{% url 'post_by_category'  category.slug %}" class="more">See All
             {{category.category_name }}</a></div>
       </div>
 
@@ -81,15 +81,26 @@
                 
                 {% if post.author.profile_picture %}
                   
-                <div class="photo"><img style="width:50px;height:50px;border-radius:50%"
-                    src="{{post.author.profile_picture.url}}" alt="" class="img-fluid"></div>
+                <div class="photo">
+                  <a href="">
+
+                    <img style="width:50px;height:50px;border-radius:50%"
+                    src="{{post.author.profile_picture.url}}" alt="" class="img-fluid">
+                  </a>
+                  </div>
                     {% else %}
-                               <img src="{% static 'assets/img/default-profile-icon-3.jpg' %}"
-                                    style="width:50px;height:50px;border-radius:50%" alt="...">
+                    <a href="">
+
+                      <img src="{% static 'assets/img/default-profile-icon-3.jpg' %}"
+                      style="width:50px;height:50px;border-radius:50%" alt="...">
+                    </a>
                 {% endif %}
                   
                 <div class="name">
-                  <h3 class="m-0 p-0">{{post.author.first_name}} {{post.author.last_name}}</h3>
+                  <a href="{% url 'author_profile_page' post.author.id %}">
+
+                    <h3 class="m-0 p-0">{{post.author.first_name}} {{post.author.last_name}}</h3>
+                  </a>
                 </div>
               </div>
             </div>

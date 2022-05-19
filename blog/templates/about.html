@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock title %}
+{% load static %}
+{% block content %}
+
+<main id="main">
+     <section>
+          {% for about in about %}
+
+
+          <div class="container">
+               <div class="row">
+                    <div class="col-lg-12 text-center mb-5">
+                         <h1 class="page-title">About us</h1>
+                    </div>
+               </div>
+
+               <div class="row mb-5">
+
+                    <div class="d-md-flex post-entry-2 half">
+                         <a href="" class="me-4 thumbnail">
+                              <img src="{{about.about_us_title_image.url}}" alt="" class="img-fluid">
+                         </a>
+                         <div class="ps-md-5 mt-4 mt-md-0">
+                              <div class="post-meta mt-4">About us</div>
+
+                              <h2 class="mb-4 display-4">{{about.about_us_title}}</h2>
+
+                              <p>{{about.about_us_body}}</p>
+                         </div>
+                    </div>
+
+                    <div class="d-md-flex post-entry-2 half mt-5">
+                         <a href="" class="me-4 thumbnail order-2">
+                              <img src="{{about.mission_and_vision_image.url}}" alt="" class="img-fluid">
+                         </a>
+                         <div class="pe-md-5 mt-4 mt-md-0">
+                              <div class="post-meta mt-4">Mission &amp; Vision</div>
+                              <h2 class="mb-4 display-4">{{about.mission_and_vision_title}}</h2>
+                              <p>{{about.mission_and_vision_body}}</p>
+                         </div>
+                    </div>
+
+               </div>
+
+          </div>
+          {% endfor %}
+     </section>
+
+
+
+     <section>
+          <div class="container">
+
+               <div class="row">
+                    {% for about in about %}
+                    <div class="col-12 text-center mb-5">
+                         <div class="row justify-content-center">
+                              <div class="col-lg-6">
+                                   <h2 class="display-4">Our Team</h2>
+                                   <p>{{about.our_team_description}}</p>
+                              </div>
+                         </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for leader in leader %}
+
+
+
+                    <div class="col-lg-4 text-center mb-5">
+                         <img style="width:250px;height:250px;border-radius:50%" src="{{leader.name_of_team_leader_image.url}}" alt="">
+                         <h4>{{leader.name_of_team_leader}}</h4>
+                         <span class="d-block mb-3 text-uppercase">{{leader.name_of_team_leader_title}}</span>
+                         <p>{{leader.leader_description}}</p>
+                    </div>
+                    {% endfor %}
+
+               </div>
+          </div>
+     </section>
+
+</main><!-- End #main -->
+
+
+{% endblock content %}

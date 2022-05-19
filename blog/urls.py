@@ -12,4 +12,6 @@ urlpatterns = [
     path('article/delete/<slug:slug>/', DeletePostView.as_view(), name='delete_post'),
     path('contact/',ContactCreateView.as_view(),name='contact'),
     path('contact_message_successfully_send/',contact_message_successfully_send,name='contact_message_successfully_send'),
+     path('<int:pk>/author-profile/', ProfilePageView.as_view(),name='author_profile_page'),
+     path('about/', About_page,name='about'),
 ]

@@ -82,8 +82,11 @@ class ContactAdmin(admin.ModelAdmin):
         'email',
         'subject',      
     )
+    
+    
 
-
+admin.site.register(About)
+admin.site.register(TeamLeader)
 
 # class PostAdmin(admin.ModelAdmin):
 #     list_display = ('title','category',"publish_date","published",'created_on')
