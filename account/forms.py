@@ -24,7 +24,7 @@ class ProfilePageForm(forms.ModelForm):
           #'profile_pic': forms.TextInput(attrs={'class': 'form-control'}),
           
           'website': forms.TextInput(attrs={'class': 'form-control'}),
-          'birthday': DateInput(),
+          'birthday': DateInput(attrs={'class': 'form-control'}),
           #'author': forms.Select(attrs={'class':'form-control'}),
           'facebook_url': forms.TextInput(attrs={'class': 'form-control'}),
           'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),
@@ -46,7 +46,7 @@ class UpdateProfilePageForm(forms.ModelForm):
           #'profile_pic': forms.TextInput(attrs={'class': 'form-control'}),
           
           'website': forms.TextInput(attrs={'class': 'form-control'}),
-          'birthday':DateInput(),
+          'birthday': DateInput(attrs={'class': 'form-control'}),
           #'author': forms.Select(attrs={'class':'form-control'}),
           'facebook_url': forms.TextInput(attrs={'class': 'form-control'}),
           'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),
