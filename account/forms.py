@@ -7,6 +7,10 @@ from blog.models import Profile
 from ckeditor.widgets import CKEditorWidget
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class ProfilePageForm(forms.ModelForm):
      class Meta:
           model = Profile
@@ -20,7 +24,7 @@ class ProfilePageForm(forms.ModelForm):
           #'profile_pic': forms.TextInput(attrs={'class': 'form-control'}),
           
           'website': forms.TextInput(attrs={'class': 'form-control'}),
-          'birthday': forms.TextInput(attrs={'class': 'form-control','placeholder':'YYYY-MM-DD'}),
+          'birthday': DateInput(),
           #'author': forms.Select(attrs={'class':'form-control'}),
           'facebook_url': forms.TextInput(attrs={'class': 'form-control'}),
           'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),
@@ -42,7 +46,7 @@ class UpdateProfilePageForm(forms.ModelForm):
           #'profile_pic': forms.TextInput(attrs={'class': 'form-control'}),
           
           'website': forms.TextInput(attrs={'class': 'form-control'}),
-          'birthday': forms.TextInput(attrs={'class': 'form-control','placeholder':'YYYY-MM-DD'}),
+          'birthday':DateInput(),
           #'author': forms.Select(attrs={'class':'form-control'}),
           'facebook_url': forms.TextInput(attrs={'class': 'form-control'}),
           'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),
